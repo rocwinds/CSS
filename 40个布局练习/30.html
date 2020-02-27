@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 要求
+    在29的基础上，调换wrapper和navigation位置
+    wrapper margin-left:-30%为navigation留出空间 width:100%不能省
+    content margin-left:30%
+    navigation 宽度30%，位于content右侧
+    extra 宽度100%，位于content底部 
+    -->
+    <style>
+    /* 基本外观 */
+    #content{background-color: grey;}
+    #header{background-color: rgb(238,238,238);}
+    #navigation{ background-color: rgb(186,203,253);}
+    #extra{ background-color: rgb(253,133,67);}
+    #footer{ background-color: #333;}
+    p{ margin: 0 10px 10px}
+    /* 布局样式写在这行下面 */
+    #wrapper{float:left;margin-right:-30%;width:100%;}
+    #content{margin-right:30%;}
+    #navigation{float:left;width:30%;margin-right:-30%;}
+    #extra{float:left; width:100%;}
+    #footer{clear:left;}
+    /* 经过尝试发现新的规律，宽度100%和浮动会同时生效，浮动无法覆盖到100%宽度的元素上面，单让navigation左浮动只会被100%宽度的wrapper排斥到下一行去，因此本题需要全员添加左浮动，然后给navigation加margin-right:-30%;相当于navigation向左平移了wrapper30%的宽度，移动到wrapper挪出来的空间*/
+       
+    /* 别人的写法，其实也是镜像操作一下，不是左右浮动交换就是左右边距值交换
+    #wrapper{ float: left; margin-left: -30%; width: 100%;}
+	#content{ margin-left: 30%;}
+	#navigation{ float: right; width: 30%;}
+	#extra{ clear: both; width: 100%; }
+	#footer{ clear: both; } */
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Header标题</h1>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <p><strong>1) Content here.内容 </strong>column long long column very long fill fill fill long text text column text silly very make long very fill silly make make long make text fill very long text column silly silly very column long very column filler fill long make filler long silly very long silly silly silly long filler make column filler make silly long long fill very.</p>
+            <p>very make make fill silly long long filler column long make silly silly column filler fill fill very filler text fill filler column make fill make text very make make very fill fill long make very filler column very long very filler silly very make filler silly make make column column</p>
+            <p>fill long make long text very make long fill column make text very silly column filler silly text fill text filler filler filler make make make make text filler fill column filler make silly make text text fill make very filler column very</p>
+            <p>column text long column make silly long text filler silly very very very long filler fill very fill silly very make make filler text filler text make silly text text long fill fill make text fill long text very silly long long filler filler fill silly long make column make silly long column long make very</p>
+        </div>
+    </div>
+    <div id="navigation">
+        <p><strong>2) Navigation here.导航</strong>long long fill filler very fill column column silly filler very filler fill fill filler text fill very silly fill text filler silly silly filler fill very make fill column text column very very column fill fill very silly column silly silly fill fill long filler</p>
+    </div>
+    <div id="extra">
+        <p><strong>3) More stuff here.其他内容</strong>very text make long silly make text very very text make long filler very make column make silly column fill silly column long make silly filler column filler silly long long column fill silly column very</p>
+    </div>
+    <div id="footer">
+        <p>Here it goes the footer底部内容</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <div id="container">
+	<div id="header">Header标题</div>
+	<div id="wrapper">
+		<div id="content">Content内容</div>
+	</div>
+	<div id="navigation">Navigation导航</div>
+	<div id="extra">Extra stuff其他内容</div>
+	<div id="footer">Footer底部</div>
+</div>  -->

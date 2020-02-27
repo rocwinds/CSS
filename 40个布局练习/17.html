@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 要求
+        wrapper 右对齐(float:right)且宽度自适应，margin-left为400px
+        extra、navigation 宽度200px，依次位于content左侧-->
+    <style>
+    /* 基本外观 */
+    #content{background-color: grey;}
+    #header{background-color: rgb(238,238,238);}
+    #navigation{ background-color: rgb(186,203,253);}
+    #extra{ background-color: rgb(253,133,67);}
+    #footer{ background-color: #333;}
+    p{ margin: 0 10px 10px}
+    /* 布局样式写在这行下面 */
+    /* #wrapper{float:right;margin-left:400px;}
+    #content{width:100%;}
+    #navigation{float:left;width:200px;}
+    #extra{float:left;width:200px;} 
+    #footer{clear:left;} 
+    不知道该咋写了，如何跨过一个宽度未定的部分？
+    看了代码发现是思路有问题，左浮动和右浮动不合适地混用了，想要元素们按顺序排就必须要让浮动方向一致！！，如果一个左边浮动一个右边浮动，那用负边框控制挪动的方法就会失效！*/
+    #wrapper{float:right;}
+    #content{margin-left:400px;}/* 宽度自适应就不用管了，浮动之后就自动自适应了吧 */
+    #navigation{float:right;width:200px;margin-right:-400px;}
+    #extra{float:right;width:200px;margin-right:-200px;} 
+    #footer{clear:right;} 
+    /* 总结：思路其实和之前完全一样，但从全员左浮动变成了全员右浮动（右对齐），因此content元素留白外边框应该留在元素左边了，而下面两个元素应该对应改成调整右边外边框负数来控制右移的幅度（右浮动的元素都是从左往右移动==>，第二行到第一行就会从屏幕最右边调到屏幕最左边出现！注意和左浮动元素的出现地方<==区分开来） */
+
+    
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Header标题</h1>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <p><strong>1) Content here.内容 </strong>column long long column very long fill fill fill long text text column text silly very make long very fill silly make make long make text fill very long text column silly silly very column long very column filler fill long make filler long silly very long silly silly silly long filler make column filler make silly long long fill very.</p>
+            <p>very make make fill silly long long filler column long make silly silly column filler fill fill very filler text fill filler column make fill make text very make make very fill fill long make very filler column very long very filler silly very make filler silly make make column column</p>
+            <p>fill long make long text very make long fill column make text very silly column filler silly text fill text filler filler filler make make make make text filler fill column filler make silly make text text fill make very filler column very</p>
+            <p>column text long column make silly long text filler silly very very very long filler fill very fill silly very make make filler text filler text make silly text text long fill fill make text fill long text very silly long long filler filler fill silly long make column make silly long column long make very</p>
+        </div>
+    </div>
+    <div id="navigation">
+        <p><strong>2) Navigation here.导航</strong>long long fill filler very fill column column silly filler very filler fill fill filler text fill very silly fill text filler silly silly filler fill very make fill column text column very very column fill fill very silly column silly silly fill fill long filler</p>
+    </div>
+    <div id="extra">
+        <p><strong>3) More stuff here.其他内容</strong>very text make long silly make text very very text make long filler very make column make silly column fill silly column long make silly filler column filler silly long long column fill silly column very</p>
+    </div>
+    <div id="footer">
+        <p>Here it goes the footer底部内容</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <div id="container">
+	<div id="header">Header标题</div>
+	<div id="wrapper">
+		<div id="content">Content内容</div>
+	</div>
+	<div id="navigation">Navigation导航</div>
+	<div id="extra">Extra stuff其他内容</div>
+	<div id="footer">Footer底部</div>
+</div>  -->

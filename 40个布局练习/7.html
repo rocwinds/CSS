@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <!-- 要求
+    container 宽度700px且居中
+    wrapper 居中且宽度400px
+    extra、navigation 150px，依次位于content两侧 -->
+
+    <style>
+    /* 基本外观 */
+    #content{background-color: grey;}
+    #header{background-color: rgb(238,238,238);}
+    #navigation{ background-color: rgb(186,203,253);}
+    #extra{ background-color: rgb(253,133,67);}
+    #footer{ background-color: #333;}
+    p{ margin: 0 10px 10px}
+    /* 布局样式写在这行下面 */
+    /* #container{float:left; width:700px; margin:0 25%;}
+    #wrapper{float:left; }
+    #content{width:400px;margin:0 25%;}
+    #navigation{float:left;width:150px; margin-left:-25%}
+    #extra{float:left;width:150px; margin-left:-100%}
+    #footer{clear:left;}
+    第一次碰到容器概念，居中调整难度也有了变化，自己写的怎么都没法调整，但思路大体是对的，记得不能混用百分比和px不然没法调整好位置 */
+
+
+    #container{ width: 700px; margin: 0 auto;}
+	#wrapper{ float: left;}
+	#content{ width: 400px; margin-left: 150px;}
+	#navigation{ float: left; width: 150px; margin-left: -550px; }
+	#extra{ float: left; width: 150px; }
+	#footer{ clear: left; }
+    /* 总结：container的700px宽度容易实现，但居中就需要内部子元素强行带着改样式，因此需要设置margin左右外边距为auto，随便子元素样式折腾反正container能跟着一起变，同时因为多了父元素的概念，因此接下来的子元素样式都会有父元素的样式继承，父元素才能变成容器；
+
+    wrapper设置左浮动、然后修改wrapper的子元素content的宽度和居中就相当于让wrapper有了宽度和居中，content想要居中需要增加左外边距150px（原理：因为整个容器container元素设置为700px，现在想要让400px的content元素在container元素里居中，用content的一边的外边距增加强行把content挪过去就是个好方法，外边框增加多少刚好让content在container能居中呢？很简单:(700px-400px)/2=150px,内外的宽度差值除以2就行了）；
+
+    接下来的navigation和extra和以前一个思路，先左浮动和wrapper保持一个水平线，然后按要求设置好宽度再通过调整margin左外边距来控制位置（设置负值缩减navigation外边距就完事了，extra不需要额外调整因为默认就是紧紧贴在wrapper右边）（顺带一提navigation左移需要设置外边框为550px是因为要跨过150px的wrapper右外边距和400的wrapper的宽度，加起来就是550px，左移就变成-550px。*/
+
+        
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Header标题</h1>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <p><strong>1) Content here.内容 </strong>column long long column very long fill fill fill long text text column text silly very make long very fill silly make make long make text fill very long text column silly silly very column long very column filler fill long make filler long silly very long silly silly silly long filler make column filler make silly long long fill very.</p>
+            <p>very make make fill silly long long filler column long make silly silly column filler fill fill very filler text fill filler column make fill make text very make make very fill fill long make very filler column very long very filler silly very make filler silly make make column column</p>
+            <p>fill long make long text very make long fill column make text very silly column filler silly text fill text filler filler filler make make make make text filler fill column filler make silly make text text fill make very filler column very</p>
+            <p>column text long column make silly long text filler silly very very very long filler fill very fill silly very make make filler text filler text make silly text text long fill fill make text fill long text very silly long long filler filler fill silly long make column make silly long column long make very</p>
+        </div>
+    </div>
+    <div id="navigation">
+        <p><strong>2) Navigation here.导航</strong>long long fill filler very fill column column silly filler very filler fill fill filler text fill very silly fill text filler silly silly filler fill very make fill column text column very very column fill fill very silly column silly silly fill fill long filler</p>
+    </div>
+    <div id="extra">
+        <p><strong>3) More stuff here.其他内容</strong>very text make long silly make text very very text make long filler very make column make silly column fill silly column long make silly filler column filler silly long long column fill silly column very</p>
+    </div>
+    <div id="footer">
+        <p>Here it goes the footer底部内容</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <div id="container">
+	<div id="header">Header标题</div>
+	<div id="wrapper">
+		<div id="content">Content内容</div>
+	</div>
+	<div id="navigation">Navigation导航</div>
+	<div id="extra">Extra stuff其他内容</div>
+	<div id="footer">Footer底部</div>
+</div>  -->

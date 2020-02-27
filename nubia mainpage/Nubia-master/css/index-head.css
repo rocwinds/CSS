@@ -1,0 +1,142 @@
+.head{
+    height: 860px;
+    width: 100%;
+    /*position: relative;*/
+    margin-top: 60px;
+    /*z-index: 1000;*/
+}
+.head .headtop{
+    height: 121px;
+    width: 100%;
+    /*position: absolute;*/
+    /*z-index: 2;*/
+}
+.head .headtop ul{
+    width: 1200px;
+    height: 121px;
+    margin: 0 auto;
+    padding-left: 75px;
+    box-sizing: border-box;
+}
+.head .headtop ul>li{
+    width: 150px;
+    height: 121px;
+    float: left;
+    padding-top: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.head .headtop ul>li:hover{
+    border-bottom: 2px solid rgba(255,0,0,1);
+    box-sizing: border-box;
+}
+.head .headtop ul li img{
+    width: 120px;
+    height: 80px;
+}
+.head .headtop ul li p{
+    width: 150px;
+    height: 80px;
+    text-align: center;
+}
+.head .headtop ul li p span{
+    color:red;
+}
+.head .headcenter{
+    height: 479px;
+    width: 100%;
+    position:relative;
+}
+.head .headcenter img{
+    height: 479px;
+    width: 100%;
+}
+.head .headcenter ol{
+    width: 150px;
+    height: 20px;
+    /*background-color: #6679ff;*/
+    position: absolute;
+    bottom:10px;
+    left: 50%;
+    margin-left: -75px;
+}
+.head .headcenter ol .yuanquan{
+    height: 8px;
+    width: 8px;
+    border-radius:50%;
+    float: left;
+    background-color: #ccc;
+    margin-left: 15px;
+    transition: all 0.5s;
+}
+.head .headcenter ol .yuanquan:hover{
+    border: 2px solid red;
+    box-sizing: border-box;
+    transform:scale(1.5,1.5);
+}
+.head .headbottom{
+    height: 250px;
+    width: 100%;
+    margin-top: 10px;
+}
+.head .headbottom ul{
+    width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+    /*color: black;*/
+}
+.head .headbottom ul li{
+    width: 396px;
+    height: 250px;
+    float: left;
+    position: relative;
+    background-color: black;
+}
+.head .headbottom ul li:nth-child(1)
+ {
+     margin-right: 6px;
+ }
+.head .headbottom ul li:nth-child(2)
+{
+    margin-right: 6px;
+}
+
+.head .headbottom ul li img{
+    width: 396px;
+    height: 250px;
+
+}
+.head .headbottom ul li div{
+    width: 120px;
+    height: 120px;
+    /*background-color: #ff8786;*/
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    margin-left:-60px;
+    top: 50%;
+    margin-top: -40px;
+    opacity: 0;
+    transition:all 1s ;
+
+}
+.head .headbottom ul li:hover div{
+    opacity: 1;
+}
+.head .headbottom ul li:hover>img{
+    opacity: 0.5;
+}
+.head .headbottom ul li div img{
+    width: 60px;
+    height: 60px;
+    margin-bottom:10px;
+    
+}
+.head .headbottom ul li div h3{
+    font-size: 16px;
+    color:white;
+    margin-bottom: 3px;
+}
+.head .headbottom ul li div p{
+    color:white;
+}

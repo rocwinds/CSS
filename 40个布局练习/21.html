@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 要求
+    wrapper margin-left:-25%为extra留出空间 width:100%不能省
+    content margin-left:25% margin-right: 200px为navigation留出空间
+    navigation 宽度200px，位于content右侧
+    extra 宽度25%，位于content右侧        
+    -->
+    <style>
+    /* 基本外观 */
+    #content{background-color: grey;}
+    #header{background-color: rgb(238,238,238);}
+    #navigation{ background-color: rgb(186,203,253);}
+    #extra{ background-color: rgb(253,133,67);}
+    #footer{ background-color: #333;}
+    p{ margin: 0 10px 10px}
+    /* 布局样式写在这行下面 */
+    #wrapper{float:left;width:100%;margin-left:-25%;}
+    #content{margin:0 200px 0 25%;}
+    #navigation{float:left;width:200px;margin-left:-200px;}
+    #extra{float:left;width:25%;}
+    #footer{clear:left;}
+
+    /* 总结：先前已经学会通过给某元素的子元素添加左右外边框25%的方式来让这个元素强行居中的骚操作；
+    现在多了一种新的骚操作，给父、子元素分别设置外边框，然后让父元素一边外边框值为负让父元素内部挪进（重叠在）子元素的外边框里，因为只涉及父元素和子元素的外边框值相互抵消因此不会受到外面元素的干扰，；
+    content右边200px的留白外边框还是留给navigation元素，extra元素会默认跟随在navigation后面，刚好能放进之前wrapper左移后留下的第一行右侧空间。
+     */
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Header标题</h1>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <p><strong>1) Content here.内容 </strong>column long long column very long fill fill fill long text text column text silly very make long very fill silly make make long make text fill very long text column silly silly very column long very column filler fill long make filler long silly very long silly silly silly long filler make column filler make silly long long fill very.</p>
+            <p>very make make fill silly long long filler column long make silly silly column filler fill fill very filler text fill filler column make fill make text very make make very fill fill long make very filler column very long very filler silly very make filler silly make make column column</p>
+            <p>fill long make long text very make long fill column make text very silly column filler silly text fill text filler filler filler make make make make text filler fill column filler make silly make text text fill make very filler column very</p>
+            <p>column text long column make silly long text filler silly very very very long filler fill very fill silly very make make filler text filler text make silly text text long fill fill make text fill long text very silly long long filler filler fill silly long make column make silly long column long make very</p>
+        </div>
+    </div>
+    <div id="navigation">
+        <p><strong>2) Navigation here.导航</strong>long long fill filler very fill column column silly filler very filler fill fill filler text fill very silly fill text filler silly silly filler fill very make fill column text column very very column fill fill very silly column silly silly fill fill long filler</p>
+    </div>
+    <div id="extra">
+        <p><strong>3) More stuff here.其他内容</strong>very text make long silly make text very very text make long filler very make column make silly column fill silly column long make silly filler column filler silly long long column fill silly column very</p>
+    </div>
+    <div id="footer">
+        <p>Here it goes the footer底部内容</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <div id="container">
+	<div id="header">Header标题</div>
+	<div id="wrapper">
+		<div id="content">Content内容</div>
+	</div>
+	<div id="navigation">Navigation导航</div>
+	<div id="extra">Extra stuff其他内容</div>
+	<div id="footer">Footer底部</div>
+</div>  -->

@@ -1,0 +1,63 @@
+.top{
+    width: 100%;
+    height: 60px;
+    background-color:black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+.top div{
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.top div ul li[class=logo]{
+    height: 60px;
+    width: 190px;
+    float: left;
+}
+.top div ul li[class=logo] img{
+    width: 190px;
+}
+
+
+.top div ul li[class=daohang]{
+    width: 550px;
+    height: 60px;
+    /*background-color: yellow;*/
+    float: left;
+    margin-left: 270px;
+}
+.top div ul li[class=daohang] ul li a{
+    float: left;
+    font-size: 16px;
+    color:#fff;
+    font-weight:bold;
+    margin-left: 40px;
+    text-align: center;
+    line-height: 60px;
+}
+.top div ul li[class=zhuce] {
+    width: 150px;
+    height: 60px;
+    float: right;
+}
+.top div ul li[class=zhuce] ul li {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-left: 15px;
+    margin-top: 15px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+}
+.top div ul li[class=zhuce] ul li a{
+    color:#ccc;
+}
+.top div ul li[class=zhuce] ul li[class=tu]{
+    background: url(../images/nubia-syb-all.png) 0 0 no-repeat;
+    color:#ccc;
+}
