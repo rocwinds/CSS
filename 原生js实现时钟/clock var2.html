@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为静态时钟添加自动刷新</title>
+<script>
+window.onload=function (){
+    function todouble(n){
+        if(n<10){
+            return '0'+n;
+        }else{
+            return ''+n;//不论N是否大于10，输出的结果永远是字符串
+        }
+    }
+    var oDate = new Date();
+    var imgSelect = document.getElementsByTagName('img');
+
+    //封装成一个函数，方便定时器调用
+    function tick(){
+        //对几种获取各种时间的写法进行整合
+        var oDate = new Date();
+        var str = todouble(oDate.getHours()) + todouble(oDate.getMinutes()) + todouble(oDate.getSeconds());
+
+        for(let i=0;i<imgSelect.length;i++){
+            imgSelect[i].src = 'img/'+str.charAt(i)+'.png';
+        }
+    }
+    setInterval(tick,1000);//在这里定时器调用并定好间隔1秒(1000)之后才算是完成了一个基础时钟
+    tick();//定义完立刻执行
+}
+</script>
+
+</head>
+<body style="background:black; color:white;font-size:50px;">
+   <div>
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+       :
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+       :
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+   </div> 
+</body>
+</html>

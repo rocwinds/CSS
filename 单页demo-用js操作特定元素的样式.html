@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>js操作特定元素css样式</title>
+    <script type="text/javascript">
+    //选取元素并声明为变量，给变量加一个点击事件，点击事件执行一个函数，会修改变量（指定元素）的css样式
+        window.onload=function () {
+            var e = document.getElementById("lvye");
+            var b = document.getElementById("bTn");
+           
+            //直接把onclick当元素属性一样操作了，并在这里赋予函数，当然提前在顶上提前封装纯执行的函数也可以
+            b.onclick=function(){
+                //语法：obj.style.属性名; obj一般都是变量，其实还是操作网页元素，如果变量值是数组记得加[下标]选特定元素！
+                e.style.color = "red";
+                e.style.border = "1px solid gray";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 id="lvye">这里是标题</h1>
+    <input id="bTn" type="button" value="改变样式" "/>
+</body>
+</html>

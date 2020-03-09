@@ -1,0 +1,47 @@
+<!-- 复制以上代码到你的IDE中，然后在script标签中编写代码，实现以下需求：
+
+点对应加减乘除按钮的时候，将两个输入框中的数字做对应的算术，并将结果显示在id为result的p标签内。
+暂时不用做任何异常处理 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        var firstNum = document.getElementById("first-number").value;
+        var secondNum = document.getElementById("second-number").value;
+        var add = document.getElementById("add-btn");
+        var minus = document.getElementById("minus-btn");
+        var times = document.getElementById("times-btn");
+        var divide = document.getElementById("divide-btn");
+        var res = document.getElementById("result");
+
+    add.onclick = function add(){  
+        res.innerHTML = parseInt(firstNum) + parseInt(secondNum);
+    }
+    
+    minus.onclick = function minus(){    
+        res.innerHTML = firstNum - secondNum;
+    }
+
+    times.onclick = function times(){
+        res.innerHTML = firstNum * secondNum;
+    }
+
+    divide.onclick = function divide(){
+        res.innerHTML = firstNum / secondNum;
+    }
+    
+    </script>
+</body>
+</html>

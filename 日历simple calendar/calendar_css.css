@@ -1,0 +1,45 @@
+.calendar-container{
+    width: calc(51px*7 + 1px);
+    
+}
+.calendar-header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #6b6b6b;
+}
+.year{
+    text-align: center;
+    line-height: 50px;
+}
+.btn{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+.calendar-body{
+    border-right: 1px solid #6b6b6b;
+    border-bottom: 1px solid #6b6b6b;
+}
+.week-row, .day-rows, .day-row{
+    overflow: hidden;
+}
+.box{
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-top: 1px solid #6b6b6b;
+    border-left: 1px solid #6b6b6b;
+    text-align: center;
+    line-height: 50px;
+}
+.week{
+    background: #13a579;
+}
+.day{
+    background: #bdbdbd;
+}
+.curday{
+    background: #ff5722;
+}

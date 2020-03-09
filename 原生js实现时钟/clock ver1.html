@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何获取时间并显示出来(只获取一次)</title>
+<script>
+//将全局运行的js代码统统套进window.onload = function(){在这里开始写全局生效js代码}不会有大问题！;
+window.onload=function (){
+    //获取时间，顺带从new Date()单独获取小时、分钟、秒
+    var oDate = new Date();
+    var oHour = oDate.getHours();
+    var oMin = oDate.getMinutes();
+    var oSec = oDate.getSeconds(); 
+    
+    //针对有多个需要判断的变量，先单独将判断方法函数定义出来，用参数来代替变量，需要用的时候就调用然后把变量放在参数位就行了。
+    function todouble(n){
+        if(n<10){
+            return '0'+n;
+        }else{
+            return ''+n;//不论N是否大于10，输出的结果永远是字符串
+        }
+    }
+    
+    //选取全部img元素，所以imgSelect实际是个数组对象，毕竟'getElement s'
+    var imgSelect = document.getElementsByTagName('img');
+    
+    //目标是根据当前时间即时创建一个代表当前时间的字符串，但JS生成数据不能直接使用，还需要经过处理，于是使用刚定义的todouble方法对生成的数据进行简单的判断处理后就会返回想要的字符串数据。
+    var str = todouble(oHour) + todouble(oMin) +todouble(oSec);
+
+    //按imgSelect数组长度当做循环次数来执行若干次语句
+    for(let i=0;i<imgSelect.length;i++){
+        imgSelect[i].src = 'img/'+str.charAt(i)+'.png';
+    }
+}
+</script>
+
+</head>
+<body style="background:black; color:white;font-size:50px;">
+   <div>
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+       :
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+       ：
+       <img src="img/0.png" alt="">
+       <img src="img/0.png" alt="">
+   </div> 
+</body>
+</html>

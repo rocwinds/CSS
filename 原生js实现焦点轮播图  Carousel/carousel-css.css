@@ -1,0 +1,117 @@
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            /* 消除全部元素自带的内外边距样式，以及超链接的自带下划线样式*/
+        }
+
+        body {
+            padding: 20px;
+            /* 让body的子元素也就是整个页面内容往右下移动20px（实际是往页面中心移动） */
+        }
+
+        /*轮播图主体父容器样式*/
+        #container {
+            width: 600px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #333;
+            /*设置width为一张图片的宽度，会限制父容器宽度，否则会自动被list里的一排图片给撑开*/
+            /*设置overflow: hidden;将超出容器范围的元素全部隐藏，配合width来控制这一排图片只显示一张；*/
+            /*设置position: relative;先设置相对定位，后代元素设置绝对定位和堆叠层级时会用到*/
+        }
+        
+        /*图片列表样式*/
+        #list {
+            width: 4200px;
+            height: 400px;
+            position: absolute;
+            z-index: 1;
+            left: -600px;
+            /*width宽度设置为7张图片的宽度，并设置绝对定位配合img左浮动让图片整齐排成一排*/
+            /*left:-600px;配合绝对定位设置，让#list的content区域以#container的左边为起点，向父容器外(即向左移动)移动600px；配合其他样式设置，会让一排图片中的1落在父容器里，而其他图片落在父容器外(因为图片是按5123451从左向右排列的)*/
+            /*z-index:1;设置堆叠层级数字，数字最大在层级顶层，数字最小在最底层*/
+        }
+
+        /*图片样式*/
+        #list img {
+            float: left;
+            /*左浮动后脱离正常文档流，但还在父容器里，自动往父容器左上角对齐*/
+        }
+
+        /* 轮播位置指示器样式 */
+        #buttons {
+            position: absolute;
+            height: 10px;
+            width: 100px;
+            z-index: 2;
+            bottom: 20px;
+            left: 250px;
+            /* left: 250px;和bottom: 20px; 配合绝对定位设置，让#buttons以#container的底边和左边为起点，向着容器内移动*/
+            /* z-index: 2; 设置#buttons的堆叠层级，配合绝对定位设置，让#buttons浮在#list上面*/
+        }
+
+        /* 轮播位置指示器内部所有圆点的样式 */
+        #buttons span {
+            cursor: pointer;
+            float: left;
+            border: 1px solid #fff;
+            width: 10px;
+            height: 10px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #333;
+            margin-right: 5px;
+            /*因为元素整体已经由父元素#buttons定好了，因此不需要纠结定位问题*/
+            /*border、border-radius、width、height四个属性将span元素修改成一个个带边框的圆形，再由margin-right将每个圆形分隔开，最后设置float: left;左浮动后全部圆形在父元素里从左向右排列整齐*/
+        }
+
+        #buttons .on {
+            background: orangered;
+            /*通过定时器给#buttons某个span元素增加class="on"来增加该样式*/
+        }
+
+        /*按钮样式(两个按钮统一样式不统一位置)*/
+        .arrow {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 36px;
+            text-align: center;
+            color: #fff;
+            background-color: RGBA(0, 0, 0, .3);/*透明的背景色*/
+            cursor: pointer;
+            position: absolute;
+            top: 180px;
+            z-index: 2;
+            display: none;
+            /*position:absolute;和top，依旧是使用绝对定位来给元素设置位置，在#container中的指定垂直定位(后续两个按钮的各自水平定位单独设置)*/
+            /* width、height、line-height画出按钮的基本形状；font-size、text-align、color、background-color给按钮以及字符修改外观 */
+            /* display: none; 让左右两个按钮默认不显示；*/
+            /* z-index: 2;设置堆叠层级让按钮浮在#list上面*/
+        }
+
+        /*.arrow的伪类样式*/
+        .arrow:hover {
+            background-color: RGBA(0, 0, 0, .7);
+            /*伪类设置让鼠标移到按钮时改变背景色*/
+        }
+        /*#container的伪类样式*/
+        #container:hover .arrow {
+            display: block;
+            /*伪类设置让鼠标移动到#container时，给.arrow也就是按钮添加/修改属性成display: block;*/
+        }
+        
+
+        /*按钮样式(左边)*/
+        #prev {
+            left: 20px;
+            /* 补完.arrow之外需要单独写的样式，即设置好#prev在#container中水平定位 */
+        }
+        /*按钮样式(右边)*/
+        #next {
+            right: 20px;
+            /* 同上，设置好#next在#container中水平定位 */
+        }

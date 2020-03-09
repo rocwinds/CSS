@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>实现选项卡的js代码以及样式</title>
+	<style>
+		* {padding: 0; margin: 0;}
+		#box{width:300px;border:1px solid black; margin:10px auto;}
+		#tab{width:100%; overflow:hidden; background: #333;}
+		#tab li{float:left;list-style:none;} 
+		#tab li a{text-decoration:none;padding:0 30px;color:white;line-height:30px;}
+		#text{width:100%; height:200px; background: #f2f2f2; text-align:center;}
+		#text div {display:none;line-height: 80px;}
+		#text div a{margin:0 25px;text-align:none;}
+		#text div.link1{display:block;}
+		/*下面是js需要才修改的样式*/
+		/*JS部分完成之后发现点击按钮没有高亮效果，特来补充*/
+		#tab li.title1{background:#ddd;}
+		#tab li.title1 a{color:#333}
+		/*选取id为tab的元素下的li元素的title1类写选取器时不能少，className属于元素并不独立*/
+	</style>
+	
+	<script>
+// 第一是实现点击按钮的移入实时响应和动态效果;(onmouseover、用自定序号当钩子同步修改样式字体和背景当高亮)
+// 第二是实现对应的内容切换(其实就是用this和循环添加自定序号当钩子来实现)
+// 如果发现js执行不了就点开浏览器检查是否存在js代码错误（编辑器里没运行肯定看不出问题，在浏览器里运行如果js存在什么问题都能看得一清二楚）
+	window.onload=function(){
+		var oDiv=document.getElementById("box")
+		var oLi=oDiv.getElementsByTagName("li")
+		var oTxt=document.getElementById("text")
+		var oCon=oTxt.getElementsByTagName("div")//声明变量就是提取要操作的元素
+
+		//循环是为了自动执行一系列操作，循环操作数组里的元素添加序号（按数组内的顺序），然后再清除class再命名class当钩子配合提前写好的样式即时改变
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].index=i;
+			oLi[i].onmouseover=function(){
+				for (var i = 0; i<oLi.length; i++) {
+					oLi[i].className="";
+					oCon[i].className="";
+				}
+				this.className="title1";
+				oCon[this.index].className = "link1";//添加移入触发事件，事件为循环为各li元素和oTxt.div元素添加序号，根据序号自动循环修改属性className，就可以配合之前写好的指定className才会变化的样式来达到自动改样式的效果
+			}
+		}
+	}
+	</script>
+</head>
+
+	<body>
+		<div id="box">
+			<ul id="tab">
+				<li class="title1"><a href="#">新闻</a></li>
+				<li><a href="#">音乐</a></li>
+				<li><a href="#">视频</a></li>
+			</ul>
+
+			<div id="text">
+				<div class="link1">
+					<a href="#" >最新资讯</a>
+					<a href="#" >国内新闻</a><br>
+					<a href="#" >国际新闻</a>
+					<a href="#" >本地新闻</a>
+				</div>
+
+				<div>
+					<a href="#" >流行音乐</a>
+					<a href="#" >日韩专辑</a><br>
+					<a href="#" >欧美金曲</a>
+					<a href="#" >华语排行</a>
+				</div>
+
+				<div>
+					<a href="#">短视频</a>
+					<a href="#" >电视剧</a><br>
+					<a href="#" >电影</a>
+					<a href="#" >动画</a>
+				</div>
+		
+			</div>
+		</div>
+
+	</body>
+
+</html>

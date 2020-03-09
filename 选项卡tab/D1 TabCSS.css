@@ -1,0 +1,61 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+#box {
+	width: 300px;
+	border: 1px solid black;
+	margin: 10px auto;
+}
+
+#tab {
+	width: 100%;
+	overflow: hidden;
+	background: #333;
+}
+
+#tab li {
+	float: left;
+	list-style: none;
+	width:33%;
+	
+}
+
+#tab li a {
+	text-decoration: none;
+	padding: 0 30px;
+	color: white;
+	line-height: 30px;
+}
+
+#tab li a:hover{/*伪类:hover很方便，在指定元素上设置之后就会触发的样式*/
+	background:gray;
+	color:black;
+}
+#text {
+	width: 100%;
+	height: 200px;
+	background: #f2f2f2;
+	text-align: center;
+}
+
+#text div {
+	display: none;
+	line-height: 80px;
+}
+
+#text div a {
+	margin: 0 25px;
+	text-align: none;
+}
+
+#text div.cur {
+	display: block;
+}
+
+/*用html搭建网页骨架（body部分填充内容），用css代码开始装饰外形，这个阶段在style标签里操作样式就够了，后续JS有动态效果需要添加样式再再回来添加*/
+
+/*对body里的各个元素（包括全部子元素）按顺序一个个进行添加样式修改*/
+
+/*元素样式会直接撑开父元素限制的形状，例如line-height文字行高和padding、margin内外边距等*/

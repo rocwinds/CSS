@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单的轮播图</title>
+    <link rel="stylesheet" href="carousel-css.css">
+    <script src="carousel-js.js"></script>
+</head>
+<body>
+    完成总结：实际有四层js功能，第一是实现了点击按钮切换图片显示、第二是实现了自动轮播，第三是实现了小圆点跟随轮播切换、第四是实现了点击小圆点切换图片显示：
+    还要总结思路和遇到的问题：
+    最基本的思路：在页面平铺放置若干张大小相等的图片（这个demo里找了五张600*400的图片），利用CSS布局使其同时只显示一张图片，其余隐藏；再利用定时器和一个自右向左的偏移量，实现自动播放的效果，或者手动点击事件切换图片的效果。
+    js部分是最难的
+    https://www.cnblogs.com/liuyanzuo/p/5679753.html
+    <!-- 轮播图主体组成很简单：一个图片列表，一个轮播位置指示器，还有前进和后退按钮；
+    
+        父容器container存放所有内容，子容器list容纳图片（）。子容器buttons存放按钮小圆点。 
+    -->
+    
+    <!-- 轮播图主体-->
+    <div id="container">
+        
+        <!-- 图片列表-->
+        <div id="list" style="left: -600px">
+            <img src="img/5.jpg" alt="5">
+            <img src="img/1.jpg" alt="1">
+            <img src="img/2.jpg" alt="2">
+            <img src="img/3.jpg" alt="3">
+            <img src="img/4.jpg" alt="4">
+            <img src="img/5.jpg" alt="5">
+            <img src="img/1.jpg" alt="1">
+        </div>
+
+        <!-- 轮播位置指示器-->
+        <div id="buttons">
+            <span index="1" class="on"></span>
+            <span index="2"></span>
+            <span index="3"></span>
+            <span index="4"></span>
+            <span index="5"></span>
+        </div>
+        <!-- 前进按钮和后退按钮-->
+        <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+        <a href="javascript:;" id="next" class="arrow">&gt;</a>
+    </div>
+
+</body>
+</html>
