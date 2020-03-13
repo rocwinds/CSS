@@ -4,8 +4,7 @@
 
 需要注意的：obj.getHours()、obj.getMinutes()、obj.getSeconds()这几个从new Date()获取时间的方法必须要加括号！！
 
-charAt()方法是获取字符串某个位置的字符，用法stringObject.charAt(index)   ，只有写了index才会确定从哪获取字符所以必须写；
-
+charAt()方法是获取字符串某个位置的字符，用法stringObject.charAt(index)，index是选取位置所以一定要写，值得一提实际上stringObject.charAt(index)和stringObject[index]这种选取字符串某一位的用法效果是一样的，但charAt()方法兼容老版本浏览器效果更好
 
 
 想要全局自动运行的js，必须放在 window.onload = function(){这里面}。
