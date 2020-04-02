@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div {float:left; margin:10px;}
+#div1 {width:50px; height:50px; background:red;}
+#div2 {width:250px; height:180px; background:#CCC; display:none;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv1=document.getElementById('div1');//红块
+	var oDiv2=document.getElementById('div2');//灰块
+	var timer=null;//临时用的变量
+	/*
+	oDiv1.onmouseover=function ()
+	{
+		oDiv2.style.display='block';
+	};//在oDiv1加入JS事件，鼠标移到这个对象时会触发，执行函数语句：修改oDiv2对象的display属性的值为'block'，可以看到效果鼠标移到红块就会触发灰块区域显示(因为之前灰块的display是'none')
+
+	oDiv1.onmouseout=function ()
+	{
+		timer=setTimeout(function (){
+			oDiv2.style.display='none';
+		}, 500);
+	};//同理还是oDiv1对象加上js事件，不管之前oDiv1的display属性怎么写的，只要当鼠标从这个对象上移出触发，执行函数语句：在500ms后修改oDiv2对象的display属性的值为'none'，会看到效果为鼠标从红块上移出灰块就会消失（可以看到单次定时器发挥了延时执行的作用，临时变量将整个定时器语句储存了起来）
+	
+	oDiv2.onmouseover=function ()
+	{
+		clearTimeout(timer);
+	};//接下来给oDiv2添加鼠标移入事件，只要鼠标移到oDiv2上就会执行语句：取消掉timer这个变量所指向的定时器，因为之前oDiv1.onmouseout是设定定时器延迟500ms让oDiv2消失，设定移到oDiv2就清除掉这个定时器，这样子鼠标移出oDiv1会正常让oDiv2隐藏，同时又添加了移到oDiv2灰块时就会让oDiv2不消失的。
+
+
+	oDiv2.onmouseout=function ()
+	{
+		oDiv2.style.display='none';
+	};//最后补上，当oDiv2.onmouseout，执行给oDiv2对象的display属性的值写为'none'，这样来让oDiv2能鼠标不触发时及时消失
+	*/
+
+
+
+	
+	/*整合版，两个区块写一样的语句，分为鼠标移入和鼠标移出两种，理清楚就不会相互干扰。
+	说白了就是:
+	只要移入，就清除掉任何定时器，并会修改灰块display属性让灰块显示；
+	只要移出，就加个定时器，定时器内容是延时500ms执行修改灰块display属性的语句让灰块不显示；
+	对oDiv1、oDiv2对象的移入移出四个操作实际不会相互干扰！*/
+
+	oDiv2.onmouseover=oDiv1.onmouseover=function ()
+	{
+		clearTimeout(timer);
+		oDiv2.style.display='block';
+	};
+	oDiv2.onmouseout=oDiv1.onmouseout=function ()
+	{
+		timer=setTimeout(function (){
+			oDiv2.style.display='none';
+		}, 500);
+	};
+}	
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

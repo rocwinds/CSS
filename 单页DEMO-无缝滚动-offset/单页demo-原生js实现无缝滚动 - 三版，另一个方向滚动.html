@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ver3 换一个方向滚动</title>
+<style>
+* {margin:0; padding:0;}
+#div1 {width:1200px; height:200px; margin:100px auto; position:relative; background:burlywood; overflow:hidden;}
+#div1 ul {position:absolute; left:0; top:0;}
+#div1 ul li {float:left; width:300px; height:200px; list-style:none;}
+img {width:300px; height:200px;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];//选取‘所有ul元素组成的数组’里的第一个ul元素
+	var aLi=oUl.getElementsByTagName('li');//选取‘所有li元素组成的数组’
+	
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//4个li和4个li拼接，充当无限滚动视觉缓冲
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//重新设定oUl宽度
+
+	setInterval(function (){
+		//这段是左移无限循环滚动关键代码
+		if(oUl.offsetLeft<-oUl.offsetWidth/2){
+			oUl.style.left = 0;
+		}
+		
+		//让容纳图片的元素在右移的同时做个判断，元素移动过自身一半宽度时oUl元素的offsetWidth改成自身负值一半，相当于重置位置，就会形成右移的无缝循环效果
+		if(oUl.offsetLeft > 0){
+			oUl.style.left = -oUl.offsetWidth/2 +'px'
+		}
+
+		//oUl.offsetLeft会不停+2，会让oUl整体持续向右移动，配合定时器每隔30ms就会在Ul.offsetLeft+2后就开始判断两个if内的语句能否执行
+		oUl.style.left=oUl.offsetLeft+2+'px';
+	}, 30);
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+    <ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+		<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>

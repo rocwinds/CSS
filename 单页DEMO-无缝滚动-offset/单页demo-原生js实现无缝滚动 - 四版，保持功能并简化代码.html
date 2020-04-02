@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ver4 整合代码</title>
+<style>
+* {margin:0; padding:0;}
+#div1 {width:1200px; height:200px; margin:100px auto; position:relative; background:burlywood; overflow:hidden;}
+#div1 ul {position:absolute; left:0; top:0;}
+#div1 ul li {float:left; width:300px; height:200px; list-style:none;}
+img {width:300px; height:200px;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];//选取‘所有ul元素组成的数组’里的第一个ul元素
+	var aLi=oUl.getElementsByTagName('li');//选取‘所有li元素组成的数组’
+	
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//4个li和4个li拼接，充当无限滚动视觉缓冲
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//重新设定oUl宽度
+
+	//①给这段执行语句取个函数名，方便后续调用
+	function move (){
+		if(oUl.offsetLeft<-oUl.offsetWidth/2){
+			oUl.style.left = 0;
+			//容纳图片的容器oUl，加个判断，以oUl.offsetWidth作为依据，oUl左移时oUl.offsetLeft符合小于-oUl.offsetWidth/2的条件就会立刻把移动中的oUl重置会初始位置再继续移动
+		}
+		
+		if(oUl.offsetLeft > 0){
+			oUl.style.left = -oUl.offsetWidth/2 +'px';
+			//同理，不过这里是oUl右移时，只要当oUl.offsetLeft大于0就会触发修改重置oUl到初始位置再继续移动
+		}
+
+		oUl.style.left=oUl.offsetLeft+2+'px';//在这里+2或-2来调整左右动向
+	}
+
+	
+	//②鼠标移入就会静止(清除了定时器)，鼠标移出就会滚动(设置了新的定时器，虽然每次设置都一样)
+	var timer=setInterval(move, 30);//在循环定时器里按一定间隔反复调用函数(一大串执行语句)，然后把这个定时器塞进一个变量里
+	oDiv.onmouseover=function(){
+		clearInterval(timer);//当鼠标移入时清除掉timer变量里包含的循环定时器
+	}
+	oDiv.onmouseout=function(){
+		timer=setInterval(move, 30);//当鼠标移出时添加上timer变量里包含的循环定时器(实际是在清除定时器后重新加一个定时器)
+	}
+
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+    <ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+		<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>

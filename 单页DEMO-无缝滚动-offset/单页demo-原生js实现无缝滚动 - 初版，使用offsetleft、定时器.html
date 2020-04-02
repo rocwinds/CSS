@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+* {margin:0; padding:0;}
+#div1 {width:1200px; height:200px; margin:100px auto; position:relative; background:burlywood;}
+#div1 ul {position:absolute; left:0; top:0;}
+#div1 ul li {float:left; width:300px; height:200px; list-style:none;}
+img {width:300px; height:200px;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];//选取‘所有ul元素组成的数组’里的第一个ul元素(实际上demo里就这一个ul所以这么写也没差)
+	var aLi=oUl.getElementsByTagName('li');//选取‘所有li元素组成的数组’，getElementsByTagName方法，所以这里选的是数组
+	
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//这不是加法运算，因为oUl.innerHTML里面是四个li元素(图片)所以是拼接操作，相当于复制了4个li然后拼接在原本4个li后面
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//第一个li元素的整个宽度乘以aLi数组的长度(4),再添个px，将这个px值赋给oUl.style.width，相当于重新设定了oUl(ul元素)的宽度
+	
+	setInterval(function (){
+		oUl.style.left=oUl.offsetLeft-2+'px';
+	}, 30);//设定30ms循环执行的定时器，执行内容为‘读取oUl.offsetLeft的值然后减去2的px值，赋给oUl.style.left去重新设定oUl和’，相当于循环执行修改oUl与有定位属性的盒子的左边的距离(一直不停-2px)
+
+
+	
+	//offsetLeft,可读写，能读取这个元素盒子和最近一个有定位属性的大盒子content部分左边的距离，写数值就相当于在大盒子里重新给盒子定位，因此可以当做快速设置某个元素位置的方法使用
+	
+	/*offset家族：
+	①offsetWidth读取元素自身的宽度(包括内容、内、外边距，整个元素盒子的宽度)；
+	②同理offsetHeight也是读取元素自身的高度；
+	③offsetLeft在这里有使用，读写元素距离最近一个有定位属性的盒子的content部分左边的距离，有些拗口但需要仔细理解；
+	④其他更多可以参考https://www.jianshu.com/p/29db918383fd
+	*/
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+    <ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+		<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>最基础的无缝滚动实现</title>
+<style>
+* {margin:0; padding:0;}
+
+/* 将超出元素宽高部分给隐藏起来不显示，overflow:hidden; */
+#div1 {width:1200px; height:200px; margin:100px auto; position:relative; background:burlywood; overflow:hidden;}
+
+#div1 ul {position:absolute; left:0; top:0;}
+#div1 ul li {float:left; width:300px; height:200px; list-style:none;}
+img {width:300px; height:200px;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];//选取‘所有ul元素组成的数组’里的第一个ul元素
+	var aLi=oUl.getElementsByTagName('li');//选取‘所有li元素组成的数组’
+	
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//4个li和4个li拼接，充当无限滚动视觉缓冲
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//重新设定oUl宽度
+
+	/*
+	//30ms循环执行的定时器，让oUl的left属性值等于oUl.offsetLeft(不停被-2px)的值
+	setInterval(function (){
+		oUl.style.left=oUl.offsetLeft-2+'px';
+	}, 30);
+	*/
+
+	setInterval(function (){
+		//无缝循环的关键,让容纳图片的元素在左移的同时做个判断，元素移动过自身一半宽度时瞬间自动回退，然后继续左移形成无缝循环的视觉效果
+		if(oUl.offsetLeft<-oUl.offsetWidth/2){
+			oUl.style.left = 0;
+		}
+		//还有个小坑，oUl.offsetWidth作为宽度本身肯定是正数，而oUl.offsetLeft肯定会变负数，会导致if条件无法成立也就不会执行重置oUl位置语句了，所以还需要给oUl.offsetWidth/2加上负号让if判断总是生效；
+		
+		//因为oUl.offsetLeft不停地-2，结合之前代码知道会让oUl整体持续向左移动，现在是想让这个oUl左移到一半时悄悄重置位置oUl.style.left = 0;(根据实际来，因为只显示4张图宽度，所以在oUl滚动过oUl自身一半宽度时重置oUl位置就会感觉在无限滚动了)；
+		
+		oUl.style.left=oUl.offsetLeft-2+'px';
+	}, 30);
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+    <ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+		<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>
