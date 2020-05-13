@@ -2,6 +2,8 @@
 https://www.bilibili.com/video/BV18x411H7qD?p=20
 
 https://www.runoob.com/php/php-variables.html
+
+https://www.xp.cn/wenda/392.html
 #### 遇到的问题
 1.安装phpstudy出问题，路径带空格（带中文也一样炸），导致apache一直没办法运行；
 
