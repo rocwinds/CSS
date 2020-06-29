@@ -10,11 +10,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 //从node_modules导入clean-webpack-plugin 插件，因为clean-webpack-plugin引入的是对象，所以用结构赋值来提取clean-webpack-plugin的构造函数赋给CleanWebpackPlugin来正常引入插件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+ //导入webpack
+ const webpack = require('webpack')
+
 //webpack输出设置
 module.exports = {
     //选择输出模式，开发development或者生产production两种
     mode:'development',
-
+    //开发服务器
+    devServer: {
+        contentBase: './dist',// contentBase指定服务器根目录
+        open: true,// 指定自动打开浏览器
+        hot:true//开启模块热替换
+    },
+    devtool: 'inline-source-map',
     //打包入口，即指定要打包的文件的路径
     entry:'./src/main.js',
 
@@ -76,13 +85,16 @@ module.exports = {
         //启用vue-loader插件
         new VueLoaderPlugin(),
         
-        //启用html-webpack-plugin插件
+        //启用打包自动生成指定index.html插件
         new HtmlWebpackPlugin({
         template:'./index.html'//不加这一条就会按照插件生成默认的html代码和文件，实际应用中经常会有指定生成内容的需求，所以给插件指定一个照着写的html模板文件
         }),
 
-        //启用clean-webpack-plugin插件
-        new CleanWebpackPlugin()
+        //启用清除打包出口文件夹插件
+        new CleanWebpackPlugin(),
+
+        //启用webpack的模块热替换插件
+        new webpack.HotModuleReplacementPlugin()
     ],
     //指定加载vue包时使用vue.js，而不是默认的vue.common.js来生成文件
     resolve: {
