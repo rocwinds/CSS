@@ -25,4 +25,5 @@ export default {
 <style lang='stylus' scoped>//lang='stylus'代表了App.vue的style样式使用的是stylus语法，scoped代表了这些样式只会在本文件生效，style标签里的语法就按照stylus写就行了（需要注意下因为vscode插件省略了{}和; ）
     h1
         color:red
+        transform:translate(100px,100px)//让h1元素偏移
 </style>
