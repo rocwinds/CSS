@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>php获取数据</title>
+</head>
+<body>
+    <button id="button">获取PHP数据</button>
+    
+    <script>
+        document.getElementById('button').addEventListener('click',getDate);
+
+        function getDate(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('get','05 ajax.php?name=hhh',true);
+            xhr.onload = function(){
+                console.log(this.responseText);
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

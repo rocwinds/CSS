@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax2 两种请求方法的区别 </title>
+</head>
+<body>
+    <button id="btn" >点击这里</button>
+    在js里修改后再点击看看console打印的state码
+    可以修改js里的xhr.open的url部分看看
+    <br>
+    点击之后在这里会显示url读取到的文字内容！：<div id='text'></div>
+
+    <script>
+    document.getElementById('btn').addEventListener('click',loadtext);
+    function loadtext(){
+        var xhr = new XMLHttpRequest();         
+        xhr.open('GET','02 SAMPLE.txt',false);
+        //console.log("Readystate:",xhr.readyState);//此处写会看到state状态为1,因为设置了url等传输设置所以已经建立连接服务器
+        xhr.onprogress = function(){
+            console.log("测试Readystate:",xhr.readyState);//此处写会看到state状态为3,网页未加载完成
+            //console.log(this.responseText);
+        }
+
+        //设置接收到响应后操作的方法1
+        xhr.onload = function(){
+            //console.log("Readystate:",xhr.readyState);//此处写会看到state状态为4，onload只会在完成请求接收到相应才会触发
+            //console.log(this.responseText);
+            
+        }
+        
+        //设置接收到响应后操作的方法2
+        xhr.onreadystatechange = function(){
+            //进入接收响应环节先做个判断，判断http状态码是否为成功(status==200)以及xhr是否接收到数据的就绪状态(readyState==4)，如果status=404就打印报错文字
+            if(this.status==200 && this.readyState==4){
+                //console.log(this.responseText);
+                document.getElementById('text').innerHTML = this.responseText;
+            }else if(this.status==404){
+                console.log('错误404，找不到网页');
+            }
+            //console.log("Readystate:",xhr.readyState);//此处写会看到state状态为2、3、4，onreadystatechange在经过xhr.send();这一步后从到接收服务器返回信息23再到准备就绪4
+        }
+        xhr.send();
+    }
+    </script>
+</body>
+</html>
+

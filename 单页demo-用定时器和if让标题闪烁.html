@@ -6,26 +6,26 @@
     //原理非常简单，就是利用定时器按一定间隔不停执行一个函数；
     //函数内容也很简单，就是执行两种提前准备好的不同语句，执行哪一种就根据设定好的一个变量来判断，每次执行该函数的执行语句之后也会修改一次变量以作为下一次判断的条件
     
-        //定义全局变量，用于标识
-        var flag = 0;
-        window.onload = function () {
-            //定时器，设置0.1秒
-            setInterval("titleChange()", 100);
+    //定义全局变量，用于标识
+    var flag = 0;
+    window.onload = function () {
+        //定时器，设置0.1秒
+        setInterval("titleChange()", 100);
+    }
+    //定义函数，利用标识变量来控制输出情况
+    function titleChange() {
+        if(flag==0)
+        {
+            document.title = "★☆★网页标题闪动★☆★";
+            flag = 1;
         }
-        //定义函数，利用标识变量来控制输出情况
-        function titleChange() {
-            if(flag==0)
-            {
-                document.title = "★☆★网页标题闪动★☆★";
-                flag = 1;
-            }
-            else
-            {
-                document.title = "☆★☆网页标题闪动☆★☆";
-                flag = 0;
-            }
+        else
+        {
+            document.title = "☆★☆网页标题闪动☆★☆";
+            flag = 0;
         }
-        </script>
+    }
+    </script>
 
 </head>
 <body>

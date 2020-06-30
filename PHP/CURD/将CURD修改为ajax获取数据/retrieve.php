@@ -38,13 +38,13 @@
 include("connect.php");
 
 //提取别的页面用post传递过来的关键字，做个非空判断
-if(!empty($_POST['keywordname'])){
+if(!empty($_POST['keytext'])){
 	//加个按钮和表头
 	echo "<a href='http://localhost/user/index.php'><input type='button' value='返回'></a>";
 	echo "<table class='table'> ";
 	echo "<tr><th>用户id</th><th>用户名</th><th>密码</th><th>邮箱</th></tr>";
 	//提取关键字
-	$keywordname = $_POST['keywordname'];
+	$keywordname = $_POST['keytext'];
 	//准备sql命令，根据关键字在user表的name字段里模糊搜索
 	$sql = "select * from user where name like '%$keywordname%'";
 	//执行sql命令并赋给$result

@@ -56,7 +56,7 @@
 
 <body>
 	<?php
-	//echo输出html代码,先做个基本表框架和一个假按钮,添加样式
+	//echo输出html代码,先做个基本表框架和按钮
 	echo "<div Class='btn'><a href='add.php'>添加用户</a></div>";
 	echo "<table class='gridtable'> ";
 	//先echo打印出table的表头部分,表身部分交给循环,echo打印</table>一定要写在循环代码的后面,不然表格就不是一体的了
@@ -91,7 +91,16 @@
 		//每一轮都会把遍历出来的数据连带表格标签一起echo打印出来,表格最后一列加入修改和删除的a链接
 		echo "<tr><td>$id</td><td>$name</td><td>$password</td><td>$email</td><td><a href='updata.php?id=$id'>修改</a> <a href='del.php?id=$id'>删除</a></td></tr>";
 	}
-	echo "</table>"; ?>
+	echo "</table>"; 
+	
+	echo '<form action="retrieve.php" method="post">
+    <input type="text" name="keytext" >
+    <input type="submit" name="btn" value="搜索">
+	</form>';
+	?>
+
+
+
 </body>
 
 </html>

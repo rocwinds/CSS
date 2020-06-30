@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>计数器</title>
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <!-- html结构 -->
+  <div id="app">
+    <!-- 计数器功能区域 -->
+    <div class="input-num">
+      <button @click="sub">
+        -
+      </button>
+      <span>{{num}}</span>
+      <button @click="add">
+        +
+      </button>
+    </div>
+  </div>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 编码 -->
+  <script>
+    var app = new Vue({
+      el:'#app',
+      data:{
+        num:0,
+      },
+      methods:{
+        add:function(){
+          //直接写num没办法选到，必须得选到vue对象的num才能操作数据
+          if(this.num<10){
+            this.num++;
+          }else{
+            alert('不能再加了')
+          }
+          
+        },
+        sub:function(){
+          if(this.num>0){
+            this.num--;
+          }else{
+            alert('不能再减了')
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

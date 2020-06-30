@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>TODOLIST</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+  </head>
+
+  <body>
+    <!-- 主体区域 -->
+    <section id="todoapp">
+      <!-- 输入框 -->
+      <header class="header">
+        <h1>清单</h1>
+        <!-- 绑定v-model双向修改读取数据，再绑定点击按钮（限定回车）触发事件-->
+        <input
+          autofocus="autofocus"
+          autocomplete="off"
+          placeholder="请输入"
+          class="new-todo"
+          v-model="inputText"
+          @keyup.enter="add" 
+        />
+      </header>
+      <!-- 列表区域 -->
+      <!-- new Vue 绑定好vue作用区域，然后再用v-for绑定循环数据到特定标签里 v-for = "item in 数据名"-->
+      <!-- section和footer都绑定v-show选择性隐藏界面，条件是根据list的数组长度来判断的，v-show通过切换display属性实现隐藏-->
+      <section class="main" v-show="list.length!=0">
+        <ul class="todo-list">
+          <!-- 如果直接显示出{{数据名}}说明应该是vue部分代码出了问题-->
+          <li class="todo"  v-for="(item,index) in list">
+            <div class="view">
+              <span class="index">{{index+1}}</span> 
+                <label>{{item}}</label>
+                <!-- 给方法传入index参数来确定去除掉哪个元素，不需要{{}} -->
+              <button class="destroy" @click="remove(index)"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- 统计和清空 -->
+      <footer class="footer" v-show="list.length!=0">
+        <span class="todo-count"> 
+          <!-- 插值表达式里直接统计数组长度是允许的 -->
+          还剩<strong>{{list.length}}</strong>件事项
+        </span>
+        <button class="clear-completed" @click="allClear">
+          清空
+        </button>
+      </footer>
+    </section>
+    <!-- 底部 -->
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    // 很关键的一点Vue不要写错否则Vue会不生效！并且要放在js里才能生效！el挂载到对应区域、data放数据、methods放函数方法，写错了会导致报错！
+    var app = new Vue({
+      el:"#todoapp",
+      data:{
+        list:["上课","看书","睡觉","吃饭"],
+        inputText:""
+      },
+      methods:{
+        add:function(){
+          //对点击对象的list数组使用push方法，将从inputText里读取到的数据push到list里
+          this.list.push(this.inputText);
+        },
+        remove:function(index){
+          //console.log(index);
+          //对点击对象的数组数据使用splice方法，起点和index一样，去除长度为1
+          this.list.splice(index,1);
+        },
+        allClear:function(){
+          this.list=[];
+        },
+        
+      }
+    })
+    </script>
+
+  </body>
+</html>

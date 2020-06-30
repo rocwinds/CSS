@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax4 请求网络中的数据，以github提供的json数据为例</title>
+</head>
+<body>
+    <button id="id">请求github数据</button>
+    <br>
+    <h1>github的数据显示</h1>
+    <div id="user"></div>
+    
+<script>
+    document.getElementById('id').addEventListener('click',getUser);
+    function getUser(){
+        var xhr = new XMLHttpRequest(); 
+        xhr.open("GET","https://api.github.com/users",true);
+        xhr.onload = function(){     
+            if(this.status == 200 && this.readyState == 4){
+                console.log(this.responseText);//可以看到从github处用AJAX获取到的json数组，依然需要转换后才能使用
+                var users = JSON.parse(this.responseText);
+                var output = '';
+                for(var i in users){
+                    output += 
+                    `<div id="users_list">
+                        <img src="${users[i].avatar_url}" width="70px" height="70px">
+                        <ul>
+                            <li>ID:${users[i].id}</li>
+                            <li>登录名：${users[i].login}</li>
+                            <li>HTML_URL：${users[i].html_url}</li>
+                        </ul>
+                    </div>`;
+                };
+                document.getElementById('user').innerHTML = output; 
+            }
+        }
+        xhr.send();//记得send出去ajax才会执行
+    };
+</script>
+</body>
+</html>

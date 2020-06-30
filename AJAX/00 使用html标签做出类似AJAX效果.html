@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <!-- ①靠input text的id和value作为钩子读取数据，input button 的onclick触发钩子的数据传递(需要js) -->
+    <div>
+        <p>请输入要加载的地址：<span id="currentTime"></span></p>
+        <p>
+            <input id="url" type="text" value="https://www.baidu.com/"/>
+            <input type="button" value="提交" onclick="LoadPage()">
+        </p>
+    </div>
+    
+    <!-- ②页面内的页面，iframe标签的html靠js的LoadPage()实现修改-->
+    <h3>测试</h3>
+    <iframe id="iframePosition" style="width: 100%;height: 500px;">
+    </iframe>
+
+    <script type="text/javascript">
+            // 第一段修改'id为currentTime'的标签，加入html内容显示时间(窗口启动自动生效)
+            window.onload = function(){
+                var myDate = new Date();
+                document.getElementById('currentTime').innerText = myDate.getTime();
+            };
+
+            //第二段 把id="url"的元素里的value数据传递给id="iframePosition"
+            function LoadPage(){
+                //根据id钩子获取数据
+                var targetUrl =  document.getElementById('url').value;
+                //根据另一个id钩子找到并修改（找到并修改的思路是通用的，如何修改要根据html标签来灵活写）
+                document.getElementById("iframePosition").src = targetUrl;
+                
+                console.log(targetUrl);    
+            }   
+        </script>    
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax1-请求纯文本 </title>
+</head>
+<body>
+    <button id="btn" >请求</button>
+    <script>
+        //原生js选取id=btn的元素，加上事件click(其实就是onclick绑定，点击触发loadtext())
+        document.getElementById('btn').addEventListener('click',loadtext);
+        //定义事件/函数/方法loadtext()，加入xhr对象实现简单的ajax;
+        function loadtext(){
+            //AJAX1.创建xhr对象
+            var xhr = new XMLHttpRequest();
+            //xhr基本啥浏览器都支持，可以打印看看这个对象有些啥属性
+            //console.log(xhr);
+
+            //AJAX2.添加xhr.open()设置，括号里('GET/POST选择传递方法','url发送请求的网址'，是否异步请求true/flase)
+            xhr.open('GET','01 SAMPLE.txt',true);
+
+            //AJAX3确认在url能正确读取到数据，添加xhr.onload或xhr.onreadystatechange设置xhr对象接收到服务器响应后该做什么
+            //AJAX3-1   xhr.onload会在发送请求后执行console.log(this.responseText)，打印出接收到的文字数据
+            xhr.onload = function(){
+                console.log(this.responseText)
+            }
+            //AJAX3-2   xhr.onreadystatechange
+             xhr.onreadystatechange = function(){
+                 console.log(this.responseText)
+            }
+
+            //AJAX4.发送请求
+            //之前都只是准备工作(传递方式、url、是否异步请求设置、服务器一响应式该做什么)，现在发送了之后才会让之前的设置起效果
+            xhr.send();         
+        }
+    </script>
+</body>
+</html>
